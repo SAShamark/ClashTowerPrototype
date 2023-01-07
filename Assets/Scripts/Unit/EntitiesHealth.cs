@@ -1,11 +1,14 @@
+using System;
 using UnityEngine;
 
 public class EntitiesHealth : MonoBehaviour
 {
+    public Action<GameObject> OnDie;
     [SerializeField] private float _health = 40;
     private float _maxHealth;
     private const float MinHealth = 0;
-    void Start()
+
+    private void Start()
     {
         _maxHealth = _health;
 
@@ -29,9 +32,9 @@ public class EntitiesHealth : MonoBehaviour
         }
     }
 
-    public void Death()
+    private void Death()
     {
-        _health = MinHealth;
-        gameObject.SetActive(false);
+        OnDie?.Invoke(gameObject);
+        Destroy(gameObject);
     }
 }

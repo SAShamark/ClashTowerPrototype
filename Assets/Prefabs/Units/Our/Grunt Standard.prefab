@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _baseUnit: {fileID: 7990103860566906070}
-  _layerName: EnemyUnit
+  _layerName: Enemy
 --- !u!1 &7990103860566906065
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,7 +161,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 515201ab97f7a69478199663a104be72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainTarget: {fileID: 0}
   _unitAnimator: {fileID: 8048110949428212555}
   _navMeshAgent: {fileID: 7990103860566906069}
 --- !u!114 &8530339318801608293
