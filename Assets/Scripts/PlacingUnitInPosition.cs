@@ -1,3 +1,4 @@
+using UI.Card.Unit;
 using UnityEngine;
 
 public class PlacingUnitInPosition : MonoBehaviour
@@ -5,7 +6,7 @@ public class PlacingUnitInPosition : MonoBehaviour
     [SerializeField] private LayerMask _objectSelectionMask;
     [SerializeField] private LayerMask _dropObjectMask;
     [SerializeField] private Camera _camera;
-    private CardPoolController _cardPoolController;
+    private UnitCardPoolController _unitCardPoolController;
     private Vector3 _startObjectPosition;
     private Vector3 _worldPosition;
     private const float MaxDistance = 100;
@@ -14,7 +15,7 @@ public class PlacingUnitInPosition : MonoBehaviour
 
     private void Start()
     {
-        _cardPoolController = CardPoolController.Instance;
+        _unitCardPoolController = UnitCardPoolController.Instance;
     }
 
     private void Update()
@@ -35,9 +36,9 @@ public class PlacingUnitInPosition : MonoBehaviour
         }
     }
 
-    public void SetUnit(GameObject unit)
+    public void SetObject(GameObject @object)
     {
-        _object = unit;
+        _object = @object;
     }
 
     private void MoveObject()
@@ -63,7 +64,7 @@ public class PlacingUnitInPosition : MonoBehaviour
     private void LoseObject()
     {
         _object = null;
-        _cardPoolController.AddNewCard();
+        _unitCardPoolController.AddNewCard();
         CheckDropPlace();
     }
 
@@ -71,7 +72,7 @@ public class PlacingUnitInPosition : MonoBehaviour
     {
         if (Physics.Raycast(_ray, MaxDistance, _dropObjectMask))
         {
-            foreach (var card in _cardPoolController.Cards)
+            foreach (var card in _unitCardPoolController.Cards)
             {
                 if (!card.gameObject.activeSelf)
                 {
